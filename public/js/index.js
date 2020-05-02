@@ -56,7 +56,7 @@ function getSolutionSet(letters){
 
 	$(document).ready(function(){
 		$.ajax({
-	        url: "ajax",
+	        url: solveUrl,
 	        type: "post",
 	        data: {'letters':letters},
 	        success: function (response) {

@@ -7,4 +7,7 @@ class HomeController extends BaseController
 		return view('index');
 	}
 
+	public function test(){
+		echo "This is fine";
+	}
 }

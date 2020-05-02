@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="assets/main.css">
 
 		<script>
-			const solveUrl = "<?php echo base_url('AjaxController/index');?>";
+			const solveUrl = "<?php echo base_url('ajax');?>";
 			console.log(solveUrl); 
 		</script>
 	</head>
