@@ -6,7 +6,8 @@ populateGrid();
  */
 function populateGrid(){
 	const letters = getRandLetters(16, 2);
-	const solutionSet = getSolutionSet(letters);
+	// const solutionSet = getSolutionSet(letters);
+	const solutionSet = checkWord(letters);
 	console.log(letters);
 	letters.forEach(function(letter, index){
 		// console.log(index+". "+letter);
@@ -56,7 +57,7 @@ function getSolutionSet(letters){
 
 	$(document).ready(function(){
 		$.ajax({
-	        url: solveUrl,
+	        url: 'ajax',
 	        type: "post",
 	        data: {'letters':letters},
 	        success: function (response) {
@@ -68,5 +69,30 @@ function getSolutionSet(letters){
 	           return 0;
 	        }
     	});	
+	})
+}
+
+
+function checkWord(letters){
+	letters = JSON.stringify(letters);
+	$(document).ready(function(){
+		$("#submitWord").click(function(){
+			var word = $("#word").val();
+			$.ajax({
+		        url: 'validateWord',
+		        type: "post",
+		        data: {'letters':letters, 'word':word},
+		        success: function (response) {
+		        	console.log(response);
+		        	console.log(word)
+					return response;
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) {
+		           // console.log(textStatus, errorThrown);
+		           return 0;
+		        }
+	    	});	
+
+		})
 	})
 }

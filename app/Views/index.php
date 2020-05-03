@@ -19,7 +19,7 @@
 	<body>
 		<div class="wrapper">
 			<div id="container" class="container">
-				<div class="boggleBox col-lg-5">
+				<div class="boggleBox col-lg-5 col-md-5">
 					<table class="boggleTable" id="boggleTable">
 						<tr>
 							<td class="boggleCell c-1" id="one"></td>
@@ -47,11 +47,15 @@
 						</tr>
 					</table>
 				</div>
-				<div class="controls col-lg-5">
+				<div class="controls col-lg-5 col-md-5">
 					<div class="buttons">
 						<button class="restart-btn btn-lg btn-danger">RE-START</button>
 						<button class="start-btn btn-lg btn-success">START TIMER</button>						
 					</div>
+				</div>
+				<div class="inputs col-md-5">
+						<input type="text" class="word" id="word">
+						<button class="submitWord btn btn-success" id="submitWord">Submit</button>
 				</div>
 			</div>
 		</div>
