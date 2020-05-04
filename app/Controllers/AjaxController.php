@@ -52,7 +52,8 @@ class AjaxController extends Controller {
 				if (($i >= 0 && $j >= 0) /*&& ($i < $this->squareDim && $j < $this->squareDim)*/) {
 					if (!in_array($key, $visited)) {
 						echo $i.$j."</br>";					
-						$this->generateCombinations($i, $j, $visited, $try);
+						$res=$this->generateCombinations($i, $j, $visited, $try);
+
 					}
 				} else {
 					echo "Rejected item: ".$i.$j."</br>";
@@ -77,68 +78,85 @@ class AjaxController extends Controller {
 	}
 
 	public function test(){
-		$letters = '["i", "y", "b", "i", "w", "s", "d", "e", "t", "t", "h", "h", "y", "j", "j", "r"]';
-		// $letters = '["i", "y", "b", "i", "w", "s", "d", "e", "k"]';
-
-		// $this->index($letters);
-		$this->validateWord();
-		// echo "This is test";
-	}
-
-	public function validateWord(){
-
-		// $this->boardLetters = json_decode(strtoupper($this->request->getVar('letters')), 1);
-		$this->boardLetters = json_decode(strtoupper('[
-			"b", "i", "b", "l", 
+		$letters = '[
+			"b", "i", "b", "i", 
 			"w", "s", "d", "e", 
 			"v", "t", "h", "h", 
-			"y", "j", "j", "r"]'), 1);
+			"y", "j", "j", "r"]';
+
+		$word = "HELD";
+		// $word = "BELIEVER";
+		$word = "HIDE";
+		$word = "DID";
+		// $word = "DEED";
+		$word = strtoupper($this->request->getVar('word'));	
+		$res = $this->validateWord($letters, $word);
+		echo PHP_EOL."Test Result for word $word: ".$res;
+		// $this->index($letters);
+		// echo "This is test";
+	}
+/**
+ * Validate if the passed word is valid word in dictionary and boggle board.
+ * @return json; json containing flag if the word is valid "isValid"
+ */
+	public function validateWord($letters = "", $testWords = ""){
+
+		$this->boardLetters = json_decode(strtoupper($this->request->getVar('letters')), 1);
+		$word = strtoupper($this->request->getVar('word'));
+		if ($letters && $testWords) {
+			// var_dump($letters);
+			// echo PHP_EOL."Test Words: ".$testWords;
+			$this->boardLetters = json_decode(strtoupper($letters), 1);
+			$word = $testWords;
+		}
 		$this->lettersDim = sizeof($this->boardLetters);
 		// echo "Letters Dimension: ".$this->lettersDim;
 		$this->squareDim = sqrt($this->lettersDim);
 		// echo "Square Dimension: ".$this->squareDim;
-		// die;
 		$this->board = $this->get2DMatrix($this->boardLetters);
 		// var_dump($this->board);
-		$word = strtoupper($this->request->getVar('word'));
-
-		$word = "BELIEVER";
-		$word = "HELD";
-		$word = "HIDE";
-		// $word = "DID";
-		// $word = "DEED";
-
 
 		$isInDictionary = $this->checkInDictionary($word);
-		$isInBoard = 0;
+		$isInBoard["word"] = $word;
+		$isInBoard["isValid"] = 0;
 		if ($isInDictionary) {
-			echo "<br>Is in dictionary: ".$isInDictionary; 
-			$isInBoard = $this->checkInBoard($word, $this->boardLetters);
+			// echo "<br>Is in dictionary: ".$isInDictionary; 
+			$isInBoard["isValid"] = $this->checkInBoard($word, $this->boardLetters);
 		}
-		print_r($isInBoard);
-		die;
-
+		$isInBoard = json_encode($isInBoard);
+		return $isInBoard;
 	}
 
+/**
+ * Check if provided word is a valid dictionary word
+ * @param  string; $word; word to be check against dictionary 
+ * @return boolean       true if present else false
+ */
 	private function checkInDictionary($word){
 		$dictionary = file_get_contents("assets/dictionary.txt");
 		$dictionary = explode("\n", $dictionary);
 		return in_array($word, $dictionary);
 	}
 
+/**
+ * check if the provided word is present in board. First checks if the letters combination is present in the board. If present, varifies if the word formation follows boggle rules.
+ * @param  string $word     word to be checked in board 
+ * @param  array  $letters  A ordered list of letters present in the boggle board.  
+ * @return boolean          true if word is present and follows boggle rules else false.
+ */
 	private function checkInBoard($word, $letters){
 		$wordArr = str_split($word);
 		$intersection = implode("", array_intersect($wordArr, $letters));
 		if ($word == $intersection) {
 			$startingIndex = $this->getIndices($wordArr[0]);
-			var_dump($startingIndex);//die;
+			// var_dump($startingIndex);//die;
 			foreach ($startingIndex as $index) {
 				$inBoard = $this->checkNeighbours($index, $wordArr, $wordArr[0]);
-				if ($inBoard == "YES") {
-					echo "<br><b>Is in board: $inBoard</b><br>";
+				if ($inBoard) {
+					// echo "<br><b>Is in board: $inBoard</b><br>";
 					return 1;
 				} else {
-					echo "<br><b>Is in board: $inBoard</b><br>";
+					// echo "<br><b>Is in board: $inBoard</b><br>";
 					continue;
 				}
 			}
@@ -147,6 +165,11 @@ class AjaxController extends Controller {
 		}
 	}
 
+/**
+ * get the index of a provided word in the boggle board matrix.
+ * @param  string $word word to be checked in board
+ * @return [type]       [description]
+ */
 	private function getIndices($word){
 		// echo "<br>Word: $word";
 		$indices = array();
@@ -162,63 +185,77 @@ class AjaxController extends Controller {
 		// var_dump($indices);die;
 	}
 
-	private function checkNeighbours($index, $word, $formedWord, $visited = array(), $boardLettersIndex = 0, $try=1){
-		echo "Parameter  word:".implode("", $word)."<br>";
-		echo "<br>$try. Called checkNeighbours function with index $index<br>";
+/**
+ * check if the tracking neighbours of given index makes a complete and required word.
+ * @param  string  $index             string in format "m,n" representing location of the first letter of word on boggle board.
+ * @param  string  $word              word to be checked in board
+ * @param  string  $formedWord        dynamically built word in each iteration. First letter of word passed at first. 
+ * @param  array   $visited           list of visited cells so as to avoid revisit(boggle rule).
+ * @param  integer $boardLettersIndex index to track the current letter of word being processed.
+ * @return boolean                     true if word is formed using boggle rules else false.
+ */
+	private function checkNeighbours($index, $word, $formedWord, $visited = array(), $boardLettersIndex = 0){
+		// echo "Parameter  word:".implode("", $word)."<br>";
+		// echo "<br>$try. Called checkNeighbours function with index $index<br>";
 		$boardLettersIndex++;
-		var_dump($index);
+		// var_dump($index);
 		$index = explode(",", $index);
 		$x = $index[0];
 		$y = $index[1];
 		$visited[] = $x.",".$y;
 		// var_dump($visited);
-		if ($try <= 16) {
+		/*if ($try <= 16) {
 			$try++;
 		} else {
 			die;
-		}
+		}*/
 
 		if ($boardLettersIndex < sizeof($word)) {
-			echo "<br>BoardIndex: ".$boardLettersIndex.PHP_EOL;
-			echo "<br>Next word: ".$word[$boardLettersIndex];
+			// echo "<br>BoardIndex: ".$boardLettersIndex.PHP_EOL;
+			// echo "<br>Next word: ".$word[$boardLettersIndex];
 			for ($i = ($x-1); $i <= ($x+1) && $i < $this->squareDim; $i++) { 
 				for ($j = ($y-1); $j <= ($y+1) && $j < $this->squareDim; $j++) { 
 					$key = $i.",".$j;
 					if (($i >= 0 && $j >= 0)) {
 						if (!in_array($key, $visited)) {
-							echo "<br>".$i.$j.":";
-							echo $this->board[$i][$j];
+							// echo "<br>".$i.$j.":";
+							// echo $this->board[$i][$j];
 							if ($word[$boardLettersIndex] == $this->board[$i][$j]) {
 								$formedWord .= $this->board[$i][$j];
-								echo "<br>Aceepted letter. Checking next neighbour.";
-								echo "<br><b>Formed Word: $formedWord ::: Received Word: ".implode("", $word)." </b><br><br>";
+								// echo "<br>Aceepted letter ".$i.$j."(".$this->board[$i][$j]."). Checking next neighbour.";
+								// echo "<br><b>Formed Word: $formedWord ::: Received Word: ".implode("", $word)." </b><br><br>";
 								if ($formedWord == implode("", $word) && $boardLettersIndex == (sizeof($word)-1)) {
-									echo "<br>*********************";
+									// echo "<br>*********************";
 									return 1;
 								} else {
-									$res = $this->checkNeighbours($key, $word,$formedWord, $visited, $boardLettersIndex, $try);
+									$res = $this->checkNeighbours($key, $word, $formedWord, $visited, $boardLettersIndex);
 									if ($res) {
 										return 1;
+									} else {
+										$formedWord = substr($formedWord, 0, -1);
 									}
 								}	
 							} else{
-								echo "<br>Rejected item: ".$i.$j."(".$this->board[$i][$j].")</br>";							
-								continue;
+								// echo "<br>Rejected item: ".$i.$j."(".$this->board[$i][$j].")</br>";							
+								// continue;
 							}
 						}
 					} else {
 						// echo "<br>Here...";
-						echo "<br>Item out of board: ".$i.$j."</br>";
+						// echo "<br>Item out of board: ".$i.$j."</br>";
 					}
 				}	
 			}
 		}
 
-		echo "<br>Formed Word: $formedWord";
+		// echo "<br>* Last Formed Word: $formedWord";
 		if ($formedWord == implode("", $word)) {
+			// echo PHP_EOL."True";
 			return 1;
 		} else {
+			// echo PHP_EOL."False";
+			// $formedWord = substr($formedWord, 0, -1);
 			return 0;
 		}
 	}
-}
+ }
