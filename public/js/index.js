@@ -1,4 +1,26 @@
-populateGrid();
+
+var time = 120;
+$(document).ready(function(){
+	populateGrid();
+	$(".restart-btn").click(function(){
+		$(".boggleTable td").text("");
+		clearInterval(window.intervalId);
+		$("span.time").text("");
+		populateGrid();
+	});
+
+	$(".start-btn").click(function(){
+		setTimer();
+	});
+
+	$("#word").keyup(function(event) {
+	    if (event.keyCode === 13) {
+	        $("#submitWord").click();
+	        $("#word").select();
+	    }
+	});	
+})
+
 
 /**
  * Populates the boggle grid.
@@ -78,21 +100,76 @@ function checkWord(letters){
 	$(document).ready(function(){
 		$("#submitWord").click(function(){
 			var word = $("#word").val();
+			var row = "<tr class = 'scoreRow'><td class = 'wordCell'>"+word+"</td><td class = 'scoreCell'><img src='assets/image/loading.gif'>checking...</td></tr>";
+			$('#scoreBoard table > tbody:last').append(row);
+			// throw new Error("my error message");
+
 			$.ajax({
 		        url: 'validateWord',
 		        type: "post",
 		        data: {'letters':letters, 'word':word},
 		        success: function (response) {
-		        	console.log(response);
-		        	console.log(word)
+		        	var res = $.parseJSON(response);
+					var wordStatus = res.isValid
+					if (wordStatus) {
+						var score = res.word.length;
+						$(".scoreCell:last").text("");
+						$(".scoreCell:last").text(score);
+						var total = getTotal();
+						// $(".totalVal").text(total);
+					} else {
+						$(".scoreRow:last").remove();
+						$( "input#word" ).effect("shake");
+						/*var alert = "<div class='alert alert-warning' role='alert'>Invalid Word!</div>";
+						$(".alertMsg").append(alert);
+						setTimeout(function(){ 
+							$(".alertMsg div").remove();
+						}, 1000);*/
+						// var total = getTotal();
+					}
+
 					return response;
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) {
-		           // console.log(textStatus, errorThrown);
 		           return 0;
 		        }
 	    	});	
 
 		})
 	})
+}
+
+function getTotal(){
+	var sum = 0;
+	$(".scoreCell").each(function(){
+		sum += Number($(this).text()); 
+	})
+
+	var sumRow = '<tr class = "totalRow"><td class = "total">TOTAL</td><td class = "totalVal"> '+sum+' </td></tr>';
+	$(".totalRow").remove();
+	$("#scoreBoard table > tbody:last").append(sumRow);
+	return sum;
+}
+
+function setTimer(){
+	window.intervalId = setInterval(function() { 
+		time--
+		var second = (time % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+		var minute = (Math.floor(time/60)).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+		populateTimer(second, minute);
+		if (time == 0) {
+			clearInterval(window.intervalId);
+			disableInputs();
+		}
+	}, 1000);
+}
+
+function disableInputs(){
+	$("input").prop('disabled', true);
+}
+
+function populateTimer(sec, min){
+	$("span.time").text("");
+	var time = min+" : "+sec;
+	$("span.time").append(time);
 }

@@ -11,6 +11,19 @@ div.container{
 	background-color: #3eb5a6;
 }
 
+div.left{
+	position: relative;
+	width: 50%;
+	float: left;
+}
+
+div.right{
+	padding-top: 5%;
+	position: relative;
+	width: 50%;
+	float: right;
+}
+
 div.boggleBox{
 	padding-top: 15%;
 }
@@ -36,8 +49,44 @@ td.boggleCell p{
 
 }
 
+div#timer{
+	font-size: 20px;
+	font-weight: 500;
+}
+
+table.score{
+	margin: 10px 0 0 0;
+	border: solid;
+}
+
+div.inputs{
+	padding: 20px 0 0 0;
+}
+
+table.score tr td, table.score tr th{
+	width: 150px;
+	border: solid;
+	padding: 1 10 1 10px;
+	margin: 0 5px 5px 5px;
+	background-color: #3fb6b8;
+	font-weight: 900;
+	text-align: center;
+	text-transform: uppercase;
+
+}
+
+table.score tr td img{
+	height:15px;
+	width: 14px;
+	margin: 0 5px 5px 5px;
+}
+
 div.buttons{
 	padding-top: 15px;
+}
+
+div.buttons button{
+	margin: 5 45px 5 0px;
 }
 
 div.start-btn{
