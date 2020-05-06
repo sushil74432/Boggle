@@ -1,10 +1,12 @@
 
 var time = 121;
 $(document).ready(function(){
-	populateGrid();
+	// populateGrid();
 	$(".restart-btn").click(function(){
 		// location.reload();
-		
+		if (!restartGame()) {
+			return 0;
+		}
 		$(".scoreRow, .totalRow").remove();
 		$("#word").val("");
 		time = 121;
@@ -12,8 +14,9 @@ $(document).ready(function(){
 		clearInterval(window.intervalId);
 		$("span.time").text("");
 		$("#timer").attr("style", "background-color: rgb(255, 240, 0); display : none");
-		populateGrid();
+		// populateGrid();
 		enableStartButton();
+		$(".restart-btn").prop("disabled", true);
 	});
 
 	$(".start-btn").click(function(){
@@ -21,6 +24,8 @@ $(document).ready(function(){
 		disableStartButton();
 		$("input").prop('disabled', false);
 		$("input").focus();
+		populateGrid();
+		$(".restart-btn").prop("disabled", false);
 
 	});
 
@@ -206,4 +211,11 @@ function generateColor(fullTime){
 	var newStyle = "background-color: rgb(255, "+newGreen+", 0)";
 	$("#timer").attr("style", newStyle);
 	// return newGreen;
+}
+
+function restartGame() {
+    if (confirm("Are you sure?")) {
+        return 1
+    }
+    return 0;
 }

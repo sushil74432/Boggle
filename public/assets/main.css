@@ -28,6 +28,7 @@ div.right{
 
 div.boggleBox{
 	padding-top: 15%;
+	position: relative;
 }
 
 table.boggleTable{
@@ -51,6 +52,13 @@ td.boggleCell p{
 
 }
 
+div.tableOverlay{
+	position: absolute;
+	top: 0;
+	left: 0; 
+	width: 500px; 
+	background: green;
+}
 div#timer{
 	text-align: center;
 	font-size: 30px;

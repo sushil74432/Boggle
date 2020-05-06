@@ -49,10 +49,14 @@
 								<td class="boggleCell c-16" id="sixteen"></td>
 							</tr>
 						</table>
+<!-- 						<div class="tableOverlay">
+						i am on top	
+						</div> -->
 					</div>
+					
 					<div class="controls">
 						<div class="buttons">
-							<button class="restart-btn btn-lg btn-danger">RE-START</button>
+							<button class="restart-btn btn-lg btn-danger" disabled>RE-START</button>
 							<button class="start-btn btn-lg btn-success">START GAME<!-- START TIMER --></button>						
 						</div>
 					</div>
