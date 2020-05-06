@@ -1,16 +1,27 @@
 
-var time = 120;
+var time = 121;
 $(document).ready(function(){
 	populateGrid();
 	$(".restart-btn").click(function(){
+		// location.reload();
+		
+		$(".scoreRow, .totalRow").remove();
+		$("#word").val("");
+		time = 121;
 		$(".boggleTable td").text("");
 		clearInterval(window.intervalId);
 		$("span.time").text("");
+		$("#timer").attr("style", "background-color: rgb(255, 240, 0); display : none");
 		populateGrid();
+		enableStartButton();
 	});
 
 	$(".start-btn").click(function(){
 		setTimer();
+		disableStartButton();
+		$("input").prop('disabled', false);
+		$("input").focus();
+
 	});
 
 	$("#word").keyup(function(event) {
@@ -29,7 +40,8 @@ $(document).ready(function(){
 function populateGrid(){
 	const letters = getRandLetters(16, 2);
 	// const solutionSet = getSolutionSet(letters);
-	const solutionSet = checkWord(letters);
+	var foundWords = [];
+	const solutionSet = checkWord(letters, foundWords);
 	console.log(letters);
 	letters.forEach(function(letter, index){
 		// console.log(index+". "+letter);
@@ -95,11 +107,19 @@ function getSolutionSet(letters){
 }
 
 
-function checkWord(letters){
+function checkWord(letters, foundWords){
 	letters = JSON.stringify(letters);
 	$(document).ready(function(){
 		$("#submitWord").click(function(){
 			var word = $("#word").val();
+			
+			// alert(foundWords.includes(word));
+
+			if (foundWords.includes(word)) {
+				console.log("already found");
+				return 0;
+			}
+			foundWords.push(word);
 			var row = "<tr class = 'scoreRow'><td class = 'wordCell'>"+word+"</td><td class = 'scoreCell'><img src='assets/image/loading.gif'>checking...</td></tr>";
 			$('#scoreBoard table > tbody:last').append(row);
 			// throw new Error("my error message");
@@ -116,16 +136,9 @@ function checkWord(letters){
 						$(".scoreCell:last").text("");
 						$(".scoreCell:last").text(score);
 						var total = getTotal();
-						// $(".totalVal").text(total);
 					} else {
 						$(".scoreRow:last").remove();
 						$( "input#word" ).effect("shake");
-						/*var alert = "<div class='alert alert-warning' role='alert'>Invalid Word!</div>";
-						$(".alertMsg").append(alert);
-						setTimeout(function(){ 
-							$(".alertMsg div").remove();
-						}, 1000);*/
-						// var total = getTotal();
 					}
 
 					return response;
@@ -168,26 +181,29 @@ function disableInputs(){
 	$("input").prop('disabled', true);
 }
 
+function disableStartButton(){
+	$("button.start-btn").prop('disabled', true);	
+}
+
+function enableStartButton(){
+	$("button.start-btn").prop('disabled', false);	
+}
+
 function populateTimer(sec, min){
 	$("span.time").text("");
 	var totalTime = min+" : "+sec;
-	// var bgColor = "background-color: rgb(255, 157, 0)";
-	// $("#timer").attr("style", bgColor);
 	generateColor(120);
 	$("span.time").append(totalTime);
 }
 
 function generateColor(fullTime){
 	var currentColors = $("#timer").attr("style");
-	// console.log(currentColors);
 	var green = 157;
 	var currentGreen = currentColors.match(/\,\s*(.*)\,/is);
 	currentGreen = currentGreen[1];
-	console.log(currentGreen); 
 	var grad = Math.ceil(green/fullTime);
 	var newGreen = currentGreen-grad;
 	var newStyle = "background-color: rgb(255, "+newGreen+", 0)";
-	console.log(newStyle);
 	$("#timer").attr("style", newStyle);
 	// return newGreen;
 }

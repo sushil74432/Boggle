@@ -53,17 +53,17 @@
 					<div class="controls">
 						<div class="buttons">
 							<button class="restart-btn btn-lg btn-danger">RE-START</button>
-							<button class="start-btn btn-lg btn-success">START TIMER</button>						
+							<button class="start-btn btn-lg btn-success">START GAME<!-- START TIMER --></button>						
 						</div>
 					</div>
 				</div>
 				<div class = "right">
-					<div id="timer" style = "background-color: rgb(255, 240, 0)">
+					<div id="timer" style = "background-color: rgb(255, 240, 0); display : none">
 						<!-- Time    -->
 						<span class="time"></span>
 					</div>
 					<div class="inputs input-group">
-						<input type="text" class="word form-control width50" id="word">
+						<input type="text" class="word form-control width50" id="word" disabled>
 						<span class="input-group-btn">
 							<button class="submitWord btn btn-success" id="submitWord">Submit</button>							
 						</span>
