@@ -1,14 +1,16 @@
 div.wrapper{
 	width: 100%;
 	height: 100%;
-	background-color: #3fb6a7;
+	/*background-color: #3fb6a7;*/
+	background-color: #A9E5BB;
 }
 
 div.container{
 	position: relative;
 	width: 80%;
 	height: 100%;
-	background-color: #3eb5a6;
+	/*background-color: #3eb5a6;*/
+	background-color: #A9E5BB;
 }
 
 div.left{
@@ -50,8 +52,18 @@ td.boggleCell p{
 }
 
 div#timer{
-	font-size: 20px;
+	text-align: center;
+	font-size: 30px;
 	font-weight: 500;
+
+	border-radius: 25px;
+    width: 150px;
+    height: auto;
+    margin: 0 auto;
+    padding: 15px;
+    position: relative;
+    background-color: red;
+
 }
 
 table.score{

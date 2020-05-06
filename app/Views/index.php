@@ -58,8 +58,8 @@
 					</div>
 				</div>
 				<div class = "right">
-					<div id="timer">
-						Time   
+					<div id="timer" style = "background-color: rgb(255, 240, 0)">
+						<!-- Time    -->
 						<span class="time"></span>
 					</div>
 					<div class="inputs input-group">

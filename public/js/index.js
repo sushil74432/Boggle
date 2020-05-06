@@ -153,7 +153,7 @@ function getTotal(){
 
 function setTimer(){
 	window.intervalId = setInterval(function() { 
-		time--
+		time--;
 		var second = (time % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
 		var minute = (Math.floor(time/60)).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
 		populateTimer(second, minute);
@@ -170,6 +170,24 @@ function disableInputs(){
 
 function populateTimer(sec, min){
 	$("span.time").text("");
-	var time = min+" : "+sec;
-	$("span.time").append(time);
+	var totalTime = min+" : "+sec;
+	// var bgColor = "background-color: rgb(255, 157, 0)";
+	// $("#timer").attr("style", bgColor);
+	generateColor(120);
+	$("span.time").append(totalTime);
+}
+
+function generateColor(fullTime){
+	var currentColors = $("#timer").attr("style");
+	// console.log(currentColors);
+	var green = 157;
+	var currentGreen = currentColors.match(/\,\s*(.*)\,/is);
+	currentGreen = currentGreen[1];
+	console.log(currentGreen); 
+	var grad = Math.ceil(green/fullTime);
+	var newGreen = currentGreen-grad;
+	var newStyle = "background-color: rgb(255, "+newGreen+", 0)";
+	console.log(newStyle);
+	$("#timer").attr("style", newStyle);
+	// return newGreen;
 }
