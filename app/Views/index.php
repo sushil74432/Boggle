@@ -23,6 +23,41 @@
 			<div id="container" class="container">
 				<div class = "left">
 					<div class="boggleBox">
+						<button type="button" class="aboutBtn btn btn-lg btn-primary" data-toggle="modal" data-target="#aboutModal">
+							About Game
+						</button>
+						<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalTitle" aria-hidden="true">
+						    <div class="modal-dialog" role="document">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						                <h5 class="modal-title" id="aboutModalTitle">About Game</h5>
+						                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						                    <span aria-hidden="true">&times;</span>
+						                </button>
+						            </div>
+						            <div class="modal-body">
+						                <p>Boggle is a word game originally invented by Allan Turoff in which players attempt to find words in sequences of adjacent letters.</p>
+						                <h3>How to play?</h3>
+						                <p>
+						                	<ul>
+						                		<li>Click on the start game button. The empty 4*4 matrix is populated by some random letters and timer will also start at that same time.</li>
+						                		<li>You can then enter the words you can form from letters on the board</li>
+						                		<li>The adjacent letters of the word you formed should also be adjacent in the boggle board</li>
+						                		<li>For example:</li>
+						                		<img src="assets/image/boggle.gif" alt="boggle board example">
+						                		<li>In the board above, as shown, the word "SUPER" is valid. Similarly "GLUE" would also be a valid word while "LIE" would be an invalid word as the letters are not connected(adjacent) on the example board</li>
+						                		<li>One letter of the same cell cannot be used twice. "STUNT" would be invalid as the letter "T" is used twice from same location. "GLEE" is valid because there are 2 E's in the board.</li>
+						                		<li>Score for a correct word will be equal to the length of the word.</li>
+						                		<li>Click on restart button if you wish to restart the game</li>
+						                	</ul>
+						                </p>
+						            </div>
+						            <div class="modal-footer">
+						                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						            </div>
+						        </div>
+						    </div>
+						</div>
 						<table class="boggleTable" id="boggleTable">
 							<tr>
 								<td class="boggleCell c-1" id="one"></td>

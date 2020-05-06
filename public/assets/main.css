@@ -31,6 +31,10 @@ div.boggleBox{
 	position: relative;
 }
 
+button.aboutBtn{
+	margin-bottom: 10px;
+}
+
 table.boggleTable{
 	border: solid;
 	padding-top: 15px;
