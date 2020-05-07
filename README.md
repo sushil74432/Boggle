@@ -2,10 +2,10 @@
 
 - Boggle game written on PHP language using Codeigniter Framework.
 - Features : Select difficulty level, Timer color changes as time approaches to an end.
-- Languages Used :
-	Frontend - Javascript/Jquery/HTML/CSS
-	Backend - PHP
-	Entry point for app : public/index.php
+- **Languages Used** :
+- Frontend - Javascript/Jquery/HTML/CSS
+- Backend - PHP
+- Entry point for app : public/index.php
 
 - Tested locally on WAMP server with PHP 7.2.14
 
