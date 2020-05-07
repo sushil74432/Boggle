@@ -97,10 +97,15 @@ class AjaxController extends Controller {
 		$letters = $this->request->getVar('board');
 		$expRes = explode(",", $this->request->getVar('test'));
 
-		// print_r($letters);//die;
-		if (!$word) {
-			$word = "Held";
+		// print_r(!$word[0]);die;
+		if (!$word[0]) {
+			$word[0] = "HELD";
 		}
+		if (!$expRes[0]) {
+			$expRes[0] = "pass";
+		}
+		// print_r($word);
+
 		if (!$letters) {
 			$letters = '[
 			"b", "i", "b", "l", 
@@ -109,7 +114,7 @@ class AjaxController extends Controller {
 			"y", "j", "j", "r"]';
 		}
 
-
+		echo "<b>Test Board: $letters</b><br><br>";
 		echo "<table style = 'border:solid 3px; margin-left:10%'>
 				<tr>
 					<th style = 'border:solid 3px;'>Word</th>
@@ -152,10 +157,11 @@ class AjaxController extends Controller {
  * Validate if the passed word is valid word in dictionary and boggle board.
  * @return json; json containing flag if the word is valid "isValid"
  */
-	public function validateWord($letters = "", $testWord = ""){
-
+	public function validateWord($letters = "", $testWord  = array()){
+		
 		$this->boardLetters = json_decode(strtoupper($this->request->getVar('letters')), 1);
 		$word = strtoupper($this->request->getVar('word'));
+
 		if ($letters && $testWord) {
 			// var_dump($letters);
 			// echo PHP_EOL."Test Words: ".$testWord;
