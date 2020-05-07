@@ -3,20 +3,20 @@ var time = 121;
 $(document).ready(function(){
 	// populateGrid();
 	$(".restart-btn").click(function(){
-		// location.reload();
 		if (!restartGame()) {
 			return 0;
 		}
-		$(".scoreRow, .totalRow").remove();
+		location.reload();
+		/*$(".scoreRow, .totalRow").remove();
 		$("#word").val("");
 		time = 121;
 		$(".boggleTable td").text("");
 		clearInterval(window.intervalId);
 		$("span.time").text("");
-		$("#timer").attr("style", "background-color: rgb(255, 240, 0); display : none");
+		$("#timer").attr("style", "background-color: rgb(255, 240, 0); display : none");*/
 		// populateGrid();
-		enableStartButton();
-		$(".restart-btn").prop("disabled", true);
+		/*enableStartButton();
+		$(".restart-btn").prop("disabled", true);*/
 	});
 
 	$(".start-btn").click(function(){
@@ -111,7 +111,12 @@ function getSolutionSet(letters){
 	})
 }
 
-
+/**
+ * Check using ajax if the entered word is valid and add to a table if valid.
+ * @param  {string} letters    random 16 letters generated in board
+ * @param  {string} foundWords the word user found
+ * @return {null}
+ */
 function checkWord(letters, foundWords){
 	letters = JSON.stringify(letters);
 	$(document).ready(function(){
@@ -137,11 +142,13 @@ function checkWord(letters, foundWords){
 		        	var res = $.parseJSON(response);
 					var wordStatus = res.isValid
 					if (wordStatus) {
+						// console.log("1."+wordStatus);
 						var score = res.word.length;
 						$(".scoreCell:last").text("");
 						$(".scoreCell:last").text(score);
 						var total = getTotal();
 					} else {
+						// console.log("2."+wordStatus);
 						$(".scoreRow:last").remove();
 						$( "input#word" ).effect("shake");
 					}
@@ -157,18 +164,25 @@ function checkWord(letters, foundWords){
 	})
 }
 
+/**
+ * get total sum of the scores in table
+ * @return {int} sum of the scores
+ */
 function getTotal(){
 	var sum = 0;
 	$(".scoreCell").each(function(){
 		sum += Number($(this).text()); 
 	})
 
-	var sumRow = '<tr class = "totalRow"><td class = "total">TOTAL</td><td class = "totalVal"> '+sum+' </td></tr>';
+	var sumRow = '<tr class = "totalRow"><td class = "total" style = "background-color: #fbffff">TOTAL</td><td class = "totalVal" style = "background-color: #fbffff"> '+sum+' </td></tr>';
 	$(".totalRow").remove();
 	$("#scoreBoard table > tbody:last").append(sumRow);
 	return sum;
 }
 
+/**
+ * Main timer function for countdown.
+ */
 function setTimer(){
 	window.intervalId = setInterval(function() { 
 		time--;
@@ -182,18 +196,36 @@ function setTimer(){
 	}, 1000);
 }
 
+/**
+ * disable inputs after timeout
+ * @return {null} 
+ */
 function disableInputs(){
 	$("input").prop('disabled', true);
 }
 
+/**
+ * disable start button
+ * @return {null} 
+ */
 function disableStartButton(){
 	$("button.start-btn").prop('disabled', true);	
 }
 
+/**
+ * enables start button
+ * @return {null} 
+ */
 function enableStartButton(){
 	$("button.start-btn").prop('disabled', false);	
 }
 
+/**
+ * populate the time to the timer div
+ * @param  {string} sec seconds remaining
+ * @param  {string} min Minutes remaining
+ * @return {null}
+ */
 function populateTimer(sec, min){
 	$("span.time").text("");
 	var totalTime = min+" : "+sec;
@@ -201,6 +233,11 @@ function populateTimer(sec, min){
 	$("span.time").append(totalTime);
 }
 
+/**
+ * changes the color of timer to red as end time approaches
+ * @param  {int} fullTime 	 The total time provided to solve the puzzle in seconds
+ * @return {null}
+ */
 function generateColor(fullTime){
 	var currentColors = $("#timer").attr("style");
 	var green = 157;
@@ -213,6 +250,10 @@ function generateColor(fullTime){
 	// return newGreen;
 }
 
+/**
+ * check with user before game restart
+ * @return {bool}  True if user sure about restart else false
+ */
 function restartGame() {
     if (confirm("Are you sure?")) {
         return 1

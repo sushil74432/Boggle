@@ -99,6 +99,10 @@ table.score tr td, table.score tr th{
 
 }
 
+table.score tr th, tr.totalRow td{
+	background-color: #fbffff
+}
+
 table.score tr td img{
 	height:15px;
 	width: 14px;
@@ -117,3 +121,7 @@ div.start-btn{
 	padding-left: 15px;
 	margin-left: 15px;
 }
+
+/* table.testTable{
+	display: none;
+} */

@@ -32,7 +32,7 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'HomeController::index');
 $routes->post('/validateWord', 'AjaxController::validateWord');
-$routes->post('/ajax', 'AjaxController::index');
+// $routes->post('/ajax', 'AjaxController::index');
 $routes->get('/test', 'AjaxController::test');
 /**
  * --------------------------------------------------------------------

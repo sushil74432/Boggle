@@ -78,36 +78,89 @@ class AjaxController extends Controller {
 	}
 
 	public function test(){
-		$letters = '[
-			"b", "i", "b", "i", 
+		// echo "<br><b></b>";
+		echo "<img src = 'assets/image/SAMPLE-BOARD.png' style = 'float:right'>";
+		echo "<br><br><b>
+						<ul>
+							<li>Test is performed against shown exmple board.</li>
+							<li>Please pass an word and expected output as get parameters.</li>
+							<li> Example : https://assurance-boggle.herokuapp.com/test?word=held&test=pass</li>
+							<li>Optionally, the board letters can also be passed as a URL parameter 'board'</li>
+							<li> Example : https://assurance-boggle.herokuapp.com/test?word=held&test=pass&board=[\"b\", \"i\", \"b\", \"l\",\"w\", \"s\", \"d\", \"e\",\"v\", \"t\", \"h\", \"h\",\"y\", \"j\", \"j\", \"r\"]</li>
+							<li>Multiple test inputs can also be entered as shown below</li>
+							<li> Example : https://assurance-boggle.herokuapp.com/test?word=held,hold,bible&test=pass,fail,pass&board=[\"b\", \"i\", \"b\", \"l\",\"w\", \"s\", \"d\", \"e\",\"v\", \"t\", \"h\", \"h\",\"y\", \"j\", \"j\", \"r\"]</li>
+
+						</ul>
+					</b><br><br><br>";
+		echo "<p><b>=======================================================================================</b></p><br>";
+		$word = explode(",", strtoupper($this->request->getVar('word')));
+		$letters = $this->request->getVar('board');
+		$expRes = explode(",", $this->request->getVar('test'));
+
+		// print_r($letters);//die;
+		if (!$word) {
+			$word = "Held";
+		}
+		if (!$letters) {
+			$letters = '[
+			"b", "i", "b", "l", 
 			"w", "s", "d", "e", 
 			"v", "t", "h", "h", 
 			"y", "j", "j", "r"]';
+		}
 
-		$word = "HELD";
-		// $word = "BELIEVER";
-		$word = "HIDE";
-		$word = "DID";
-		// $word = "DEED";
-		$word = strtoupper($this->request->getVar('word'));	
-		$res = $this->validateWord($letters, $word);
-		echo PHP_EOL."Test Result for word $word: ".$res;
-		// $this->index($letters);
-		// echo "This is test";
+
+		echo "<table style = 'border:solid 3px; margin-left:10%'>
+				<tr>
+					<th style = 'border:solid 3px;'>Word</th>
+					<th style = 'border:solid 3px;'>Expected Result</th>
+					<th style = 'border:solid 3px;'>Algorithm Result</th>
+					<th style = 'border:solid 3px;'>Remarks</th>";
+		foreach ($word as $key => $wrd) {
+			// echo "<br>Testing for $wrd";
+			// var_dump($this->request->getVar('result'));die;
+			$expected = trim($expRes[$key]);
+			$expectedResult = ($expected == "pass")?1:0;
+			// print_r($expectedResult);die;
+			$res = $this->validateWord($letters, trim($wrd));
+			$result = json_decode($res, 1);
+			
+			// echo "<br>".$wrd.":::".$expectedResult.":::".$result['isValid'];
+
+			if ($result['isValid'] == $expectedResult) {
+				echo "<tr style = 'background-color:green;'><td>$wrd</td><td>$expected</td><td>".($result['isValid']?"pass":"fail")."</td><td>PASS</td></tr>";
+			} else {
+				echo "<tr style = 'background-color:red;'><td>$wrd</td><td>$expected</td><td>".($result['isValid']?"pass":"fail")."</td><td>Fail</td></tr>";
+			}
+
+
+			/*if ($result['isValid'] == $expectedResult) {
+				echo "<h1 style='color:green;'>Test Passed for word $wrd.</h1>";
+				echo "<h3>Expected Result: ".$expected." ::: Algorithm Output : ".($result['isValid']?"pass":"fail")."</h3>";
+			} else {
+				echo "<h1 style='color:red;'>Test Failed for word $wrd.</h1>";
+				echo "<h3>Expected Result: ".$expected." ::: Algorithm Output : ".($result['isValid']?"pass":"fail")."</h3>";
+			}*/
+			// echo "*****************************";
+	
+		}
+		echo "</table>";
+		// print_r($result);
+		// echo PHP_EOL."Test Result for word $word: ".$res;
 	}
 /**
  * Validate if the passed word is valid word in dictionary and boggle board.
  * @return json; json containing flag if the word is valid "isValid"
  */
-	public function validateWord($letters = "", $testWords = ""){
+	public function validateWord($letters = "", $testWord = ""){
 
 		$this->boardLetters = json_decode(strtoupper($this->request->getVar('letters')), 1);
 		$word = strtoupper($this->request->getVar('word'));
-		if ($letters && $testWords) {
+		if ($letters && $testWord) {
 			// var_dump($letters);
-			// echo PHP_EOL."Test Words: ".$testWords;
+			// echo PHP_EOL."Test Words: ".$testWord;
 			$this->boardLetters = json_decode(strtoupper($letters), 1);
-			$word = $testWords;
+			$word = $testWord;
 		}
 		$this->lettersDim = sizeof($this->boardLetters);
 		// echo "Letters Dimension: ".$this->lettersDim;
