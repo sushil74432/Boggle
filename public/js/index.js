@@ -138,6 +138,7 @@ function checkWord(letters, foundWords){
 
 			if (foundWords.includes(word)) {
 				console.log("already found");
+				$( "input#word" ).effect("shake");
 				return 0;
 			}
 			foundWords.push(word);
