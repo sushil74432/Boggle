@@ -9,7 +9,7 @@
 
 - Tested locally on WAMP server with PHP 7.2.14
 
-- Algorithm :
+- **Algorithm** :
  - Word is passed through ajax as the user find it and enters in the input field.
  - In backend, Word is seperated into letters and starting from first letter
  - First it is ensured if the word is valid dictionary word
@@ -22,11 +22,11 @@
 
 -----------------------------
 
-Testing:
+**Testing**:
 -Manual test can be performed for word checking algorithm using the URL: 
 https://assurance-boggle.herokuapp.com/test?word=held,hold,bible&test=pass,fail,pass&board=["b", "i", "b", "l","w", "s", "d", "e","v", "t", "h", "h","y", "j", "j", "r"]
 
--Parameters : 
-	word => the words to be tested against board(default word "held" used if passed empty value)
-	test => expected output 
-	board (optional) => 16 random letters that represent boggle board in left to right and top to down order.
+-**Parameters** : 
+	- **word** => the words to be tested against board(default word "held" used if passed empty value)
+	- **test** => expected output 
+	- **board (optional)** => 16 random letters that represent boggle board in left to right and top to down order.
