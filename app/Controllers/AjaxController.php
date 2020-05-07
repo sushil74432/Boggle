@@ -82,7 +82,7 @@ class AjaxController extends Controller {
 		echo "<img src = 'assets/image/SAMPLE-BOARD.png' style = 'float:right'>";
 		echo "<br><br><b>
 						<ul>
-							<li>Test is performed against shown exmple board.</li>
+							<li>Test is performed against shown example board.</li>
 							<li>Please pass an word and expected output as get parameters.</li>
 							<li> Example : https://assurance-boggle.herokuapp.com/test?word=held&test=pass</li>
 							<li>Optionally, the board letters can also be passed as a URL parameter 'board'</li>

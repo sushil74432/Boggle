@@ -63,7 +63,18 @@ function populateGrid(){
  * @return {[array]} array containing random letters of provided length
  */
 function getRandLetters(length, maxDuplicate){
-	const alphaSet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+	var level = $('#selectMenu').find(":selected").val();
+	var alphaSet = "";
+	if (level == 1) {
+		alphaSet = ["e", "t", "a", "o", "i", "n", "s", "h", "r", "d", "l", "u"];
+	} else if (level == 2) {
+		alphaSet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "v", "y"];
+	} else if (level == 3) {
+		alphaSet = ["e", "a", "i", "n", "o", "s", "c", "m", "j", "x", "w", "y", "g", "p"];
+	}
+	console.log("Level selected "+level);
+	console.log("Alphabet Set "+alphaSet);
+
 	var randSet = [];
 	while(randSet.length < length) {
 		var rand = alphaSet[Math.floor(Math.random() * alphaSet.length)];

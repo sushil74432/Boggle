@@ -26,6 +26,14 @@
 						<button type="button" class="aboutBtn btn btn-lg btn-primary" data-toggle="modal" data-target="#aboutModal">
 							About Game
 						</button>
+
+						<select class="form-control selectMenu" id = "selectMenu">
+						  <!-- <option>Select Level</option> -->
+						  <option value="2">Level 2-Medium</option>
+						  <option value="1">Level 1-Easy</option>
+						  <option value="3">Level 3-Hard</option>
+						</select>
+
 						<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalTitle" aria-hidden="true">
 						    <div class="modal-dialog" role="document">
 						        <div class="modal-content">

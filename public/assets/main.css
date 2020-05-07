@@ -122,6 +122,11 @@ div.start-btn{
 	margin-left: 15px;
 }
 
+select.selectMenu{
+	width: 175px;
+    margin-right: 200px;
+	float: right;
+}
 /* table.testTable{
 	display: none;
 } */
