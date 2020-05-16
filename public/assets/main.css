@@ -129,6 +129,10 @@ div.start-btn{
 	margin-left: 15px;
 }
 
+button.start-btn:disabled{
+	background-color: #ababab !important;
+}
+
 select.selectMenu{
 	width: 175px;
     margin-right: 200px;

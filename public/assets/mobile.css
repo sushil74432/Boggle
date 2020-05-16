@@ -95,6 +95,10 @@
 	    /*min-height: 20px;*/
 	}
 
+	div.start-btn:disabled{
+		background-color: #ababab !important;
+	}
+
  
 
 }

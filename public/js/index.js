@@ -1,7 +1,8 @@
 
 var time = 121;
+var isMobile
 $(document).ready(function(){
-	let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+	isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
 	if (isMobile) {
 		$("div.desktopInputGroup").remove();
 	} else{
@@ -215,6 +216,7 @@ function setTimer(){
 		if (time == 0) {
 			clearInterval(window.intervalId);
 			disableInputs();
+			console.log("Mobile flag: "+isMobile);
 			if (isMobile) {
 				$(".upperControl").attr("style", "display: block");
 				$("div.mobileInputGroup").attr("style", "position: relative;");
