@@ -29,7 +29,6 @@ $(document).ready(function(){
 		setTimer();
 		disableStartButton();
 		$("input").prop('disabled', false);
-		$("input").focus();
 		populateGrid();
 		$(".restart-btn").prop("disabled", false);
 		if (isMobile) {
@@ -37,6 +36,7 @@ $(document).ready(function(){
 			$("div.mobileInputGroup").attr("style", "position: fixed; display: block");
 			$("div.left").attr("style", "margin-top : 13%");
 		}
+		$("input").focus();
 	});
 
 	$("#word").keyup(function(event) {
