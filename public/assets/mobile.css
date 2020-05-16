@@ -29,7 +29,7 @@
     	height: 50px;
 	}
 	div.boggleBox {
-	    padding-top: 5%;
+	    padding-top: 3%;
 	}
 	table.boggleTable{
 		margin: 0 auto;
@@ -76,6 +76,7 @@
 	div.mobileInputGroup{
 		display: block;
 		top: 1%;
+		display: none;
 	}
 
 	div#timer{
@@ -83,13 +84,15 @@
 		font-size: 15px;
 		font-weight: 500;
 		border-radius: 0px;
-	    width: auto;
+	    width: 56px;
 	    height: auto;
-	    /*margin: 0 auto;*/
-	    padding: 5px;
+	    margin: 0 auto;
+	    padding: 8px 5px 8px 5px;
 	    position: relative;
 	    float: left;
-	    background-color: red;
+	    background-color: inherit;
+	    display: block;
+	    /*min-height: 20px;*/
 	}
 
  

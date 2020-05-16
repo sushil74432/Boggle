@@ -34,7 +34,7 @@ $(document).ready(function(){
 		$(".restart-btn").prop("disabled", false);
 		if (isMobile) {
 			$(".upperControl").attr("style", "display: none");
-			$("div.mobileInputGroup").attr("style", "position: fixed;");
+			$("div.mobileInputGroup").attr("style", "position: fixed; display: block");
 			$("div.left").attr("style", "margin-top : 13%");
 		}
 	});

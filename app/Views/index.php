@@ -135,7 +135,7 @@
 						<table>
 							<tr>
 								<td class="time">
-									<div id="timer" style = "background-color: rgb(255, 240, 0); display : none">
+									<div id="timer" style = "background-color: rgb(255, 240, 0);">
 										<span class="time"></span>
 									</div>
 								</td>

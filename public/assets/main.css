@@ -78,7 +78,7 @@ div#timer{
     padding: 15px;
     position: relative;
     background-color: red;
-
+    display: none;
 }
 
 table.score{
