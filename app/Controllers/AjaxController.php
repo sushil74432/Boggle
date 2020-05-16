@@ -198,7 +198,7 @@ class AjaxController extends Controller {
 	}
 
 /**
- * check if the provided word is present in board. First checks if the letters combination is present in the board. If present, varifies if the word formation follows boggle rules.
+ * check if the provided word is present in board. First checks if the letters combination is present in the board. If present, verifies if the word formation follows boggle rules.
  * @param  string $word     word to be checked in board 
  * @param  array  $letters  A ordered list of letters present in the boggle board.  
  * @return boolean          true if word is present and follows boggle rules else false.
@@ -306,6 +306,7 @@ class AjaxController extends Controller {
 				}	
 			}
 		}
+
 
 		// echo "<br>* Last Formed Word: $formedWord";
 		if ($formedWord == implode("", $word)) {
