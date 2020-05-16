@@ -28,11 +28,14 @@
 	div.boggleBox {
 	    padding-top: 1%;
 	}
+	table.boggleTable{
+		margin: 0 auto;
+	}	
 	
 	table.boggleTable tr td {
 	    border: solid 5px;
-	    width: 80px;
-	    height: 70px;
+	    width: 60px;
+	    height: 60px;
 	    background-color: #3fb6b8;
 	}
 
