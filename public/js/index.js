@@ -24,10 +24,11 @@ $(document).ready(function(){
 		disableStartButton();
 		$("input").prop('disabled', false);
 		$("input").focus();
-		$(".upperControl").attr("style", "display: none");
 		populateGrid();
 		$(".restart-btn").prop("disabled", false);
-
+		$(".upperControl").attr("style", "display: none");
+		$("div.inputs").attr("style", "position: fixed;");
+		$("div.left").attr("style", "margin-top : 13%");
 	});
 
 	$("#word").keyup(function(event) {
@@ -206,6 +207,9 @@ function setTimer(){
 			clearInterval(window.intervalId);
 			disableInputs();
 			$(".upperControl").attr("style", "display: block");
+			$("div.inputs").attr("style", "position: relative;");
+			$("div.left").attr("style", "margin-top : 0");
+
 		}
 	}, 1000);
 }

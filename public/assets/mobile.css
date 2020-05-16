@@ -14,6 +14,7 @@
 	div.left{
 		width: 100%;
 		float: none;
+	    /*margin-top: 13%;*/
 	}
 
 	div.right{
@@ -59,7 +60,11 @@
 	div.buttons button{
 		margin: 0px;
 	}
-
+	
+	div.inputs{
+		/*position: absolute;*/
+		top: 0px;
+	}
 
 }
 
