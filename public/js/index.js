@@ -24,6 +24,7 @@ $(document).ready(function(){
 		disableStartButton();
 		$("input").prop('disabled', false);
 		$("input").focus();
+		$(".upperControl").attr("style", "display: none");
 		populateGrid();
 		$(".restart-btn").prop("disabled", false);
 
@@ -204,6 +205,7 @@ function setTimer(){
 		if (time == 0) {
 			clearInterval(window.intervalId);
 			disableInputs();
+			$(".upperControl").attr("style", "display: block");
 		}
 	}, 1000);
 }

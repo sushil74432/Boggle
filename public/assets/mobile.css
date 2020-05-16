@@ -1,0 +1,77 @@
+@media only screen and (max-device-width : 640px) {
+	div.wrapper {
+	    min-height: 100%;
+	    width: 100%;
+	    height: auto;
+	}
+
+	div.container{
+	    width: 100%;
+	    margin: 0;
+        padding: 5%;	
+        /*display: flex;
+	    flex-direction: column;*/
+	}
+
+	/* div{
+	    order: 3;
+	} */
+
+	div.left{
+		width: 100%;
+		float: none;
+	}
+
+	div.right{
+		width: 100%;
+		float: none;
+	}
+	
+
+	select.selectMenu {
+	    /* width: 49%; */
+	    margin-right: 0px;
+	    float: right;
+	}
+	div.boggleBox {
+	    padding-top: 1%;
+	}
+	
+	table.boggleTable tr td {
+	    border: solid 5px;
+	    width: 80px;
+	    height: 70px;
+	    background-color: #3fb6b8;
+	}
+
+	td.boggleCell p{
+		margin: 1% 0 0 24%;		
+	}
+
+
+	button.start-btn {
+	    width: 47%;
+	    float: right;
+        margin: 0 9px 0 0 !important;
+	}
+
+	button.restart-btn {
+	    width: 47%;
+	    float: right;
+        margin: 0 0 0 10px !important;
+	}
+
+	div.buttons button{
+		/*margin: 0px;*/
+	}
+
+	div.inputs{
+		/*order: 1;*/
+	}
+
+}
+
+
+@media (pointer:coarse) {
+
+}

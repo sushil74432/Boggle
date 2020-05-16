@@ -12,6 +12,7 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 		<link rel="stylesheet" href="assets/main.css">
+		<link rel="stylesheet" href="assets/mobile.css">
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-26371590-2"></script>
@@ -22,7 +23,7 @@
 
 		  gtag('config', 'UA-26371590-2');
 		</script>
-		
+
 		<meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
 		<script>
 			const solveUrl = "<?php echo base_url('ajax');?>";
@@ -34,17 +35,18 @@
 			<div id="container" class="container">
 				<div class = "left">
 					<div class="boggleBox">
-						<button type="button" class="aboutBtn btn btn-lg btn-primary" data-toggle="modal" data-target="#aboutModal">
-							About Game
-						</button>
+						<div class="upperControl">
+							<button type="button" class="aboutBtn btn btn-lg btn-primary" data-toggle="modal" data-target="#aboutModal">
+								About Game
+							</button>
 
-						<select class="form-control selectMenu" id = "selectMenu">
-						  <!-- <option>Select Level</option> -->
-						  <option value="2">Level 2-Medium</option>
-						  <option value="1">Level 1-Easy</option>
-						  <option value="3">Level 3-Hard</option>
-						</select>
-
+							<select class="form-control selectMenu" id = "selectMenu">
+							  <!-- <option>Select Level</option> -->
+							  <option value="2">Level 2-Medium</option>
+							  <option value="1">Level 1-Easy</option>
+							  <option value="3">Level 3-Hard</option>
+							</select>
+						</div>
 						<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalTitle" aria-hidden="true">
 						    <div class="modal-dialog" role="document">
 						        <div class="modal-content">
