@@ -307,7 +307,6 @@ class AjaxController extends Controller {
 			}
 		}
 
-
 		// echo "<br>* Last Formed Word: $formedWord";
 		if ($formedWord == implode("", $word)) {
 			// echo PHP_EOL."True";
