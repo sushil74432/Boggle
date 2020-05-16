@@ -25,9 +25,11 @@
 	select.selectMenu {
 	    margin-right: 0px;
 	    float: right;
+	   	margin-top: -1px;
+    	height: 50px;
 	}
 	div.boggleBox {
-	    padding-top: 1%;
+	    padding-top: 5%;
 	}
 	table.boggleTable{
 		margin: 0 auto;
@@ -46,13 +48,13 @@
 
 
 	 button.start-btn {
-	    width: 47%;
+	    width: 50%;
 	    /*float: right;*/
         /*margin: 0 9px 0 0 !important;*/
 	}
 	
 	button.restart-btn {
-	    width: 47%;
+	    width: 40%;
 	    /*float: left;*/
         margin: 0 0 0 10px !important;
 	} 
@@ -64,7 +66,33 @@
 	div.inputs{
 		/*position: absolute;*/
 		top: 0px;
+		padding: 0px;
 	}
+
+	div.desktopInputGroup{
+		display: none;
+	}
+
+	div.mobileInputGroup{
+		display: block;
+		top: 1%;
+	}
+
+	div#timer{
+		text-align: center;
+		font-size: 15px;
+		font-weight: 500;
+		border-radius: 0px;
+	    width: auto;
+	    height: auto;
+	    /*margin: 0 auto;*/
+	    padding: 5px;
+	    position: relative;
+	    float: left;
+	    background-color: red;
+	}
+
+ 
 
 }
 

@@ -1,6 +1,12 @@
 
 var time = 121;
 $(document).ready(function(){
+	let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+	if (isMobile) {
+		$("div.desktopInputGroup").remove();
+	} else{
+		$("div.mobileInputGroup").remove();
+	}
 	// populateGrid();
 	$(".restart-btn").click(function(){
 		if (!restartGame()) {
@@ -26,9 +32,11 @@ $(document).ready(function(){
 		$("input").focus();
 		populateGrid();
 		$(".restart-btn").prop("disabled", false);
-		$(".upperControl").attr("style", "display: none");
-		$("div.inputs").attr("style", "position: fixed;");
-		$("div.left").attr("style", "margin-top : 13%");
+		if (isMobile) {
+			$(".upperControl").attr("style", "display: none");
+			$("div.mobileInputGroup").attr("style", "position: fixed;");
+			$("div.left").attr("style", "margin-top : 13%");
+		}
 	});
 
 	$("#word").keyup(function(event) {
@@ -191,6 +199,7 @@ function getTotal(){
 	var sumRow = '<tr class = "totalRow"><td class = "total" style = "background-color: #fbffff">TOTAL</td><td class = "totalVal" style = "background-color: #fbffff"> '+sum+' </td></tr>';
 	$(".totalRow").remove();
 	$("#scoreBoard table > tbody:last").append(sumRow);
+	$("td.score span").text(sum);
 	return sum;
 }
 
@@ -206,9 +215,13 @@ function setTimer(){
 		if (time == 0) {
 			clearInterval(window.intervalId);
 			disableInputs();
-			$(".upperControl").attr("style", "display: block");
-			$("div.inputs").attr("style", "position: relative;");
-			$("div.left").attr("style", "margin-top : 0");
+			if (isMobile) {
+				$(".upperControl").attr("style", "display: block");
+				$("div.mobileInputGroup").attr("style", "position: relative;");
+				$("div.left").attr("style", "margin-top : 0");
+				// $("input").blur();
+				// $("table").focus();
+			}
 
 		}
 	}, 1000);
@@ -220,6 +233,7 @@ function setTimer(){
  */
 function disableInputs(){
 	$("input").prop('disabled', true);
+	$("button.submitWord").prop('disabled', true);
 }
 
 /**

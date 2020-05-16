@@ -118,15 +118,45 @@
 					</div>
 				</div>
 				<div class = "right">
-					<div id="timer" style = "background-color: rgb(255, 240, 0); display : none">
-						<!-- Time    -->
-						<span class="time"></span>
+					<div class="desktopInputGroup">
+						<div id="timer" style = "background-color: rgb(255, 240, 0); display : none">
+							<!-- Time    -->
+							<span class="time"></span>
+						</div>
+						<div class="inputs input-group">
+							<input type="text" class="word form-control width50" id="word" disabled>
+							<span class="input-group-btn">
+								<button class="submitWord btn btn-success" id="submitWord">Submit</button>
+							</span>
+						</div>
 					</div>
-					<div class="inputs input-group">
-						<input type="text" class="word form-control width50" id="word" disabled>
-						<span class="input-group-btn">
-							<button class="submitWord btn btn-success" id="submitWord">Submit</button>							
-						</span>
+
+					<div class="mobileInputGroup">
+						<table>
+							<tr>
+								<td class="time">
+									<div id="timer" style = "background-color: rgb(255, 240, 0); display : none">
+										<span class="time"></span>
+									</div>
+								</td>
+								<td class="inputField">
+									<div class="inputs input-group">
+										<input type="text" class="word form-control width50" id="word" disabled>
+										<span class="input-group-btn">
+											<button class="submitWord btn btn-success" id="submitWord">CHECK</button>
+										</span>
+									</div>						
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td class="score">
+									Total Score: 
+									<span></span>
+									<!-- <input type="text" class="word form-control width50" id="word" disabled> -->
+								</td>
+							</tr>
+						</table>
 					</div>
 					<div class="socreBoard" id="scoreBoard">
 						<table class="score">

@@ -3,6 +3,7 @@ div.wrapper{
 	height: 100%;
 	/*background-color: #3fb6a7;*/
 	background-color: #A9E5BB;
+	display: table;
 }
 
 div.container{
@@ -64,6 +65,7 @@ div.tableOverlay{
 	width: 500px; 
 	background: green;
 }
+
 div#timer{
 	text-align: center;
 	font-size: 30px;
@@ -131,6 +133,10 @@ select.selectMenu{
 	width: 175px;
     margin-right: 200px;
 	float: right;
+}
+
+div.mobileInputGroup{
+	display: none;
 }
 /* table.testTable{
 	display: none;
