@@ -22,8 +22,7 @@
 
 		  gtag('config', 'UA-26371590-2');
 		</script>
-
-
+		<meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
 		<script>
 			const solveUrl = "<?php echo base_url('ajax');?>";
 			console.log(solveUrl); 
