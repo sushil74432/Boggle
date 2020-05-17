@@ -17,7 +17,7 @@ $(document).ready(function(){
 	}
 	$(".submitUsename").click(function(){
 		userName = $(".userNameInput").val();
-		Cookies.set('userName', userName, {expires: '', path:''})
+		Cookies.set('userName', userName, {expires: 365, path:''})
 	})
 	$(".userNameInput").keyup(function(event) {
 	    if (event.keyCode === 13) {
@@ -161,6 +161,7 @@ function checkWord(letters, foundWords){
 	letters = JSON.stringify(letters);
 	$(document).ready(function(){
 		$("#submitWord").click(function(){
+			$("input").focus();
 			var word = $("#word").val();
 			
 			// alert(foundWords.includes(word));
@@ -253,6 +254,10 @@ function setTimer(){
 					// $("table").focus();
 				}, 4000);
 			}
+
+			setTimeout(function(){
+				$.confetti.stop();
+			},4000);
 
 		}
 	}, 1000);

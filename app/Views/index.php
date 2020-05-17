@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Boggle</title>
+		<title>Word Maze</title>
 		<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 
 
@@ -50,7 +50,7 @@
 						    <div class="modal-dialog" role="document">
 						        <div class="modal-content">
 						            <div class="modal-header">
-						                <h5 class="modal-title" id="aboutModalTitle">About Game</h5>
+						                <h5 class="modal-title" id="aboutModalTitle">About Word Maze Game</h5>
 						                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						                    <span aria-hidden="true">&times;</span>
 						                </button>
