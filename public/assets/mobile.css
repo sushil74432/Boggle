@@ -46,17 +46,24 @@
 		margin: 1% 0 0 24%;		
 	}
 
+	div.buttons{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 
 	 button.start-btn {
 	    width: 50%;
+        margin: 0 auto;
 	    /*float: right;*/
         /*margin: 0 9px 0 0 !important;*/
 	}
 	
 	button.restart-btn {
 	    width: 40%;
+        margin: 0 auto;
 	    /*float: left;*/
-        margin: 0 0 0 10px !important;
+        /*margin: 0 0 0 10px !important;*/
 	} 
 
 	div.buttons button{
@@ -95,7 +102,7 @@
 	    /*min-height: 20px;*/
 	}
 
-	div.start-btn:disabled{
+	button.start-btn:disabled{
 		background-color: #ababab !important;
 	}
 

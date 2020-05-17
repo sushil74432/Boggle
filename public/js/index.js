@@ -1,6 +1,7 @@
 
 var time = 121;
-var isMobile
+var isMobile;
+var userName;
 $(document).ready(function(){
 	isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
 	if (isMobile) {
@@ -8,6 +9,23 @@ $(document).ready(function(){
 	} else{
 		$("div.mobileInputGroup").remove();
 	}
+	// $(".alert").alert();
+	userName = Cookies.get('userName');
+	// alert(userName);
+	if (!userName) {
+		$(".userNameBtn").click();
+	}
+	$(".submitUsename").click(function(){
+		userName = $(".userNameInput").val();
+		Cookies.set('userName', userName, {expires: '', path:''})
+	})
+	$(".userNameInput").keyup(function(event) {
+	    if (event.keyCode === 13) {
+	        $(".submitUsename").click();
+	    }
+	});
+
+
 	// populateGrid();
 	$(".restart-btn").click(function(){
 		if (!restartGame()) {
@@ -216,13 +234,24 @@ function setTimer(){
 		if (time == 0) {
 			clearInterval(window.intervalId);
 			disableInputs();
+			$(".timeUpBtn").click();
+			if (!userName) {
+				userName = "Stranger"
+			}
+			var totalScore = $(".totalVal").text();
+			$("#timeUpTitle").text("Time's Up, "+userName+"!");
+			$(".timeUpText").text("Your Total Score :"+totalScore);
+			$.confetti.restart()
 			console.log("Mobile flag: "+isMobile);
 			if (isMobile) {
-				$(".upperControl").attr("style", "display: block");
-				$("div.mobileInputGroup").attr("style", "position: relative;");
-				$("div.left").attr("style", "margin-top : 0");
-				// $("input").blur();
-				// $("table").focus();
+				setTimeout(function(){
+					$(".upperControl").attr("style", "display: block");
+					$("div.mobileInputGroup").attr("style", "position: relative;");
+					$("div.left").attr("style", "margin-top : 0");
+					$.confetti.stop();
+					// $("input").blur();
+					// $("table").focus();
+				}, 4000);
 			}
 
 		}

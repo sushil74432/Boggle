@@ -142,6 +142,28 @@ select.selectMenu{
 div.mobileInputGroup{
 	display: none;
 }
+
+button:disabled{
+	display: none;
+}
+
+button.userNameBtn{
+	display: none;
+}
+
+div.alert{
+	/*display:none;*/
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal-body {
+    font-size: 20px;
+    color: green;
+    font-weight: 500;
+}
+
 /* table.testTable{
 	display: none;
 } */

@@ -3,7 +3,6 @@
 		<title>Boggle</title>
 		<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 		
@@ -79,6 +78,64 @@
 						        </div>
 						    </div>
 						</div>
+
+						<button type="button" class="userNameBtn btn btn-lg btn-primary" data-toggle="modal" data-target="#userNameModal">
+							UserName
+						</button>
+						<div class="modal fade" id="userNameModal" tabindex="-1" role="dialog" aria-labelledby="userNameModalTitle" aria-hidden="true">
+						    <div class="modal-dialog" role="document">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						                <h5 class="modal-title" id="aboutModalTitle">Your Name?</h5>
+						                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						                    <span aria-hidden="true">&times;</span>
+						                </button>
+						            </div>
+						            <div class="modal-body">
+										<input type="text" name = "userNameInput" class = "userNameInput" id = "userNameInput">
+						            </div>
+						            <div class="modal-footer">
+						                <button type="button" class="btn btn-primary submitUsename" data-dismiss="modal">Continue</button>
+						            </div>
+						        </div>
+						    </div>
+						</div>
+
+						<button type="button" class="timeUpBtn btn btn-lg btn-primary" data-toggle="modal" data-target="#timeUpModal" style = "display:none">
+							Timeup
+						</button>
+						<div class="modal fade" id="timeUpModal" tabindex="-1" role="dialog" aria-labelledby="timeUpModalTitle" aria-hidden="true">
+						    <div class="modal-dialog" role="document">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						                <h5 class="modal-title" id="timeUpTitle"></h5>
+						                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						                    <span aria-hidden="true">&times;</span>
+						                </button>
+						            </div>
+						            <div class="modal-body">
+										<span class = "timeUpText"></span>
+						            </div>
+									
+						            <div class="modal-footer">
+						                <button type="button" class="btn btn-primary submitUsename" data-dismiss="modal">Close</button>
+						            </div>
+						        </div>
+						    </div>
+						</div>
+
+						<!-- <div class="alert alert-success" role="alert">
+							<h4 class="alert-heading">
+								Times Up!
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+							</h4>
+							<br>
+							<p>Your Total score was</p>
+							<span class="scorePopUp"></span>
+							<hr>
+							<p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+						</div> -->
+
 						<table class="boggleTable" id="boggleTable">
 							<tr>
 								<td class="boggleCell c-1" id="one"></td>
@@ -169,8 +226,12 @@
 				</div>
 			</div>
 		</div>
+
 		<footer>
 			<script src = "js/index.js"></script>
+			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+			<script src="https://rawgit.com/benevolenttech/jquery.confetti.js/master/jquery.confetti.js"></script>
 		</footer>
 	</body>
 </html>
