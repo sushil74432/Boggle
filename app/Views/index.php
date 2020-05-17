@@ -79,7 +79,7 @@
 						    </div>
 						</div>
 
-						<button type="button" class="userNameBtn btn btn-lg btn-primary" data-toggle="modal" data-target="#userNameModal">
+						<button type="button" class="userNameBtn btn btn-lg btn-primary" data-toggle="modal" data-target="#userNameModal" style = "display: none;">
 							UserName
 						</button>
 						<div class="modal fade" id="userNameModal" tabindex="-1" role="dialog" aria-labelledby="userNameModalTitle" aria-hidden="true">
