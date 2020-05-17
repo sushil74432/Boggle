@@ -56,6 +56,7 @@ $(document).ready(function(){
 			$("div.left").attr("style", "margin-top : 13%");
 		}
 		$("input").focus();
+		$("#word").select();
 	});
 
 	$("#word").keyup(function(event) {
