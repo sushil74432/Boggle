@@ -36,7 +36,7 @@
 	}	
 	
 	table.boggleTable tr td {
-	    border: solid 5px;
+	    border: solid 2px !important;
 	    width: 60px;
 	    height: 60px;
 	    background-color: #3fb6b8;
