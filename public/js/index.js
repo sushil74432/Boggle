@@ -163,11 +163,10 @@ function checkWord(letters, foundWords){
 		$("#submitWord").click(function(){
 			$("input").focus();
 			$("#word").select();
-			
+
 			var word = $("#word").val();
 			
 			// alert(foundWords.includes(word));
-
 			if (foundWords.includes(word)) {
 				console.log("already found");
 				$( "input#word" ).effect("shake");
