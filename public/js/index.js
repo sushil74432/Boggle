@@ -56,7 +56,6 @@ $(document).ready(function(){
 			$("div.left").attr("style", "margin-top : 13%");
 		}
 		$("input").focus();
-		$("#word").select();
 	});
 
 	$("#word").keyup(function(event) {
@@ -163,6 +162,8 @@ function checkWord(letters, foundWords){
 	$(document).ready(function(){
 		$("#submitWord").click(function(){
 			$("input").focus();
+			$("#word").select();
+			
 			var word = $("#word").val();
 			
 			// alert(foundWords.includes(word));
@@ -244,7 +245,6 @@ function setTimer(){
 			$("#timeUpTitle").text("Time's Up, "+userName+"!");
 			$(".timeUpText").text("Your Total Score :"+totalScore);
 			$.confetti.restart()
-			console.log("Mobile flag: "+isMobile);
 			if (isMobile) {
 				setTimeout(function(){
 					$(".upperControl").attr("style", "display: block");
