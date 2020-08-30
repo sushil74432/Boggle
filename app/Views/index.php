@@ -1,3 +1,4 @@
+<!--comment-->
 <html>
 	<head>
 		<title>Word Maze</title>
