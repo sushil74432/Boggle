@@ -84,11 +84,11 @@ class AjaxController extends Controller {
 						<ul>
 							<li>Test is performed against shown example board.</li>
 							<li>Please pass an word and expected output as get parameters.</li>
-							<li> Example : https://assurance-boggle.herokuapp.com/test?word=held&test=pass</li>
+							<li> Example : https://wordmaze.herokuapp.com/test?word=held&test=pass</li>
 							<li>Optionally, the board letters can also be passed as a URL parameter 'board'</li>
-							<li> Example : https://assurance-boggle.herokuapp.com/test?word=held&test=pass&board=[\"b\", \"i\", \"b\", \"l\",\"w\", \"s\", \"d\", \"e\",\"v\", \"t\", \"h\", \"h\",\"y\", \"j\", \"j\", \"r\"]</li>
+							<li> Example : https://wordmaze.herokuapp.com/test?word=held&test=pass&board=[\"b\", \"i\", \"b\", \"l\",\"w\", \"s\", \"d\", \"e\",\"v\", \"t\", \"h\", \"h\",\"y\", \"j\", \"j\", \"r\"]</li>
 							<li>Multiple test inputs can also be entered as shown below</li>
-							<li> Example : https://assurance-boggle.herokuapp.com/test?word=held,hold,bible&test=pass,fail,pass&board=[\"b\", \"i\", \"b\", \"l\",\"w\", \"s\", \"d\", \"e\",\"v\", \"t\", \"h\", \"h\",\"y\", \"j\", \"j\", \"r\"]</li>
+							<li> Example : https://wordmaze.herokuapp.com/test?word=held,hold,bible&test=pass,fail,pass&board=[\"b\", \"i\", \"b\", \"l\",\"w\", \"s\", \"d\", \"e\",\"v\", \"t\", \"h\", \"h\",\"y\", \"j\", \"j\", \"r\"]</li>
 
 						</ul>
 					</b><br><br><br>";
